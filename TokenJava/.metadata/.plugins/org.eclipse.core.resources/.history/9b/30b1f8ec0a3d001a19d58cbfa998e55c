@@ -1,0 +1,40 @@
+package br.com.generation.TokenJava.Controller;
+
+import java.util.ArrayList;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import br.com.generation.TokenJava.Model.Produto;
+import br.com.generation.TokenJava.seguranca.Seguranca;
+
+public class ProdutoController {
+	
+
+	
+	
+	@GetMapping("/produto/todos")
+	public ResponseEntity<ArrayList<Produto>> getAllProdutos(@RequestParam String token){
+		if(Seguranca.isValid(token)) {
+			ArrayList<Produto> lista = new ArrayList<Produto>(); 
+			for (int i=0; i<20; i++) {
+				Produto p = new Produto(); 
+				p.setCodigo(8);
+				p.setTitulo("Bolsa rosa");
+				p.setDetalhes("Linda bolsa em couro de vaca rosa ecológico");
+				p.setPreco(3000.00f);
+				 
+				lista.add(p); 
+				
+			}
+			
+			return ResponseEntity.ok(lista); 
+		}
+		else {
+			return ResponseEntity.status(403).build();
+		}
+		
+	}
+
+}

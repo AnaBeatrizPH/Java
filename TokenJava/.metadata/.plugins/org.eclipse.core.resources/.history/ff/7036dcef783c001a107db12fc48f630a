@@ -1,0 +1,17 @@
+package br.com.generation.TokenJava.seguranca;
+
+import javax.xml.bind.DatatypeConverter;
+
+import br.com.generation.TokenJava.Model.Usuario;
+
+public class Seguranca {
+	
+	private static final String PREFIXO="ZuZu|"; 
+	
+	public static String generateToken(Usuario usuario) {
+		String str = PREFIXO + usuario.toString(); 
+		String token = DatatypeConverter.printHexBinary(str.getBytes()); 
+		return token; 
+	}
+
+}

@@ -1,0 +1,5 @@
+package br.com.generation.TokenJava.Model;
+
+public class Produto {
+
+}
